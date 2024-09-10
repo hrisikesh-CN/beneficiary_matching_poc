@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+sentence-transformers
+torch  # Required by sentence-transformers for PyTorch backend
+transformers  # Needed for some models in sentence-transformers
+ipykernel 
+langchain
+openai
