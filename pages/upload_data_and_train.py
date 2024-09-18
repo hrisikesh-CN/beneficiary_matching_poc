@@ -14,6 +14,9 @@ if file:
     # Read CSV
     df = pd.read_csv(file)
     st.write("Data preview:", df.head())
+    
+    n_clusters = st.slider("Select Number of Clusters to Train",min_value=2, max_value=10)
+
 
     if st.button("Train"):
 
@@ -34,20 +37,20 @@ if file:
                 
             
         
-        # model_trainer_artifact = model_trainer.train_kmeans(n_clusters=4)
+        model_trainer_artifact = model_trainer.train_kmeans(n_clusters= n_clusters)
 
-        # st.write("Training complete!")
+        st.write("Training complete!")
 
-        # st.write(f"**Step 4:** Model and Preprocessor saved successfully in pipeline object at {model_trainer_artifact.model_store_full_path}")
+        st.write(f"**Step 4:** Model and Preprocessor saved successfully in pipeline object at {model_trainer_artifact.model_store_full_path}")
 
-        # # Saving model and preprocessor
-        # df['Cluster'] = model_trainer_artifact.full_pipeline_object.predict(df)
+        # Saving model and preprocessor
+        df['Cluster'] = model_trainer_artifact.full_pipeline_object.predict(df)
 
-        # st.session_state['training_data'] = df 
+        st.session_state['training_data'] = df 
 
 
-        # st.session_state['pipeline'] = model_trainer_artifact.full_pipeline_object
-        # st.session_state["transformed_data_path"] = model_trainer_artifact.x_transformed_path
+        st.session_state['pipeline'] = model_trainer_artifact.full_pipeline_object
+        st.session_state["transformed_data_path"] = model_trainer_artifact.x_transformed_path
             
         
         
