@@ -35,23 +35,7 @@ class ModelTrainer:
         
         
         
-    def get_optimal_k_value_from_elbow_method(self,
-                                              transformed_data ):
-        try:
-            inertia = []
-            for k in range(1, 11):
-                kmeans = KMeans(n_clusters=k, random_state=0).fit(transformed_data)
-                inertia.append(kmeans.inertia_)
 
-            # Find the optimal k using KneeLocator
-            kneedle = KneeLocator(range(1, 11), inertia, curve='convex', direction='decreasing')
-            optimal_k = kneedle.elbow
-            
-            return optimal_k
-        
-        except Exception as e:
-            raise CustomException(e, sys)
-        
         
    
         
