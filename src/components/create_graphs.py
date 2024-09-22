@@ -3,7 +3,6 @@ import pandas as pd
 from src.entity.config_entity import ModelTrainerConfig
 from src.entity.artifact_entity import ModelTrainerArtifact
 
-from src.logger import get_logger
 from src.exception import CustomException
 import numpy as np
 from kneed import KneeLocator

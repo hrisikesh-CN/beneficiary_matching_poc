@@ -4,7 +4,7 @@ import pandas as pd
 from src.entity.config_entity import ModelTrainerConfig
 from src.entity.artifact_entity import ModelTrainerArtifact
 
-from src.logger import get_logger
+# from src.logger import get_logger
 from src.exception import CustomException
 import numpy as np
 from kneed import KneeLocator
@@ -31,7 +31,7 @@ class ModelTrainer:
         self.data = data
         self.preprocessor_object = preprocessor_object
         self.model_trainer_config = ModelTrainerConfig()
-        self.logger = get_logger(__name__)
+        # self.logger = get_logger(__name__)
         
         
         
@@ -83,7 +83,7 @@ class ModelTrainer:
                 x_transformed_path = transformed_data_store_path
             )
             
-            self.logger.info(f'Pipeline object saved at {pipeline_store_path}')
+            # self.logger.info(f'Pipeline object saved at {pipeline_store_path}')
 
             return model_trainer_artifact
             
