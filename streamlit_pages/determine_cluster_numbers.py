@@ -27,6 +27,7 @@ else:
     df = st.session_state["uploaded_data"]
     
 if df is not None:
+    df = df.sample(n=5000, random_state=40)  #due to memory issues
     st.write("Data preview:", df.head())
 
 
@@ -68,6 +69,10 @@ if df is not None:
                                     min_value=3)
 
     graph_name = st.radio("Select graph type",["2d graph","3d graph"])
+    
+    if graph_name == "3d graph":
+        df = df.sample(n=3000, random_state=40)
+    
 
     if st.button("Get Graph"):
         
