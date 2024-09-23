@@ -1,3 +1,4 @@
+import os
 import time
 from src.components.data_transformation import DataTransformation
 from src.components.model_training import ModelTrainer
@@ -10,6 +11,11 @@ st.title("Upload Data and Train")
 file = st.file_uploader("Upload beneficiary dataset (CSV)", type=["csv"])
 
 if file:
+    # del the previous files in artifact 
+    if os.path.exists("artifacts"):
+        for file_name in os.listdir("artifacts"):
+            os.system(f" rm -rf {os.path.join('artifacts', file_name)}")
+
     st.write("**Step 2:** File uploaded successfully")
 
     # Read CSV

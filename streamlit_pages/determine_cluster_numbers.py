@@ -1,3 +1,4 @@
+import os
 import streamlit as st 
 
 
@@ -16,8 +17,14 @@ st.title("Determine the number of clusters")
 df = None
 if "uploaded_data" not in st.session_state:
     file = st.file_uploader("Upload beneficiary dataset (CSV)", type=["csv"])
+    
 
     if file:
+        # del the previous files in artifact 
+
+        if os.path.exists("artifacts"):
+            for file_name in os.listdir("artifacts"):
+                os.system(f" rm -rf {os.path.join('artifacts', file_name)}")
         st.write("**Step 2:** File uploaded successfully")
 
         # Read CSV
@@ -70,11 +77,16 @@ if df is not None:
 
     graph_name = st.radio("Select graph type",["2d graph","3d graph"])
     
-    if graph_name == "3d graph":
-        df = df.sample(n=3000, random_state=40)
+   
     
 
     if st.button("Get Graph"):
+
+        if graph_name == "3d graph":
+            plot_data = df.sample(n=3000, random_state=40)
+            
+        else:
+            plot_data = df.copy()
         
 
         for k in range(
